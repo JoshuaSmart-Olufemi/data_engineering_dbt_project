@@ -16,8 +16,8 @@ renamed as (
         {{ dbt_utils.generate_surrogate_key(['vendor_id', 'pickup_datetime']) }} as trip_id,
         vendor_id as vendorid,
         rate_code as ratecodeid,
-        pickup_location_id as  pickup_locationid,
-        dropoff_location_id as dropoff_locationid,
+        cast(pickup_location_id as integer) as  pickup_locationid,
+        cast(dropoff_location_id as integer) as dropoff_locationid,
         
         -- timestamps
         pickup_datetime as pickup_datetime,
@@ -39,7 +39,7 @@ renamed as (
         0 as ehail_fee,
         imp_surcharge as improvement_surcharge,
         total_amount as total_amount,
-        payment_type as payment_type,
+        cast(payment_type as numeric) as payment_type,
         {{ get_payment_type_description('payment_type') }} as payment_type_description
     from source
     where rn = 1
