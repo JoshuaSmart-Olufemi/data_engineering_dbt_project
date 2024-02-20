@@ -60,7 +60,7 @@ from union_data
 inner join dim_zones as pickup_zone
 on cast(union_data.pickup_locationid as integer) = cast(pickup_zone.locationid as integer)
 inner join dim_zones as dropoff_zone
-on cast(union_data.pickup_locationid as integer) = cast(dropoff_zone.locationid as integer)
+on cast(union_data.dropoff_locationid as integer) = cast(dropoff_zone.locationid as integer)
 
  -- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
